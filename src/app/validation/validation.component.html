@@ -1,0 +1,80 @@
+<div class="container mt-3">
+    <h2>Form Validation</h2>
+    <p>Form validation is an important part of web application. </p>
+    <p>PatternValidator is used to validate regex pattern.</p>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="">
+              <div class="col-lg-4 mx-auto">
+                <form [formGroup]="loginData" (ngSubmit)="login(loginData.value)">
+                    <p>Email : <span class="text-danger"
+                            *ngIf="loginData.controls.email.touched && loginData.controls.email.invalid">Please enter email</span>
+                    </p>
+                    <input type="email" [ngClass]="{'border-red' : loginData.controls.email.touched && loginData.controls.email.invalid }" class="form-control mb-1" formControlName="email">
+
+                    <p>Password : <span class="text-danger" *ngIf="loginData.controls.password.touched && loginData.controls.password.invalid">Please enter password</span>    
+                    </p>
+                    <input type="pasaword" [ngClass]="{'border-red' : loginData.controls.password.touched && loginData.controls.password.invalid }" class="form-control mb-3" formControlName="password">
+
+                    <button class="btn btn-success" [disabled]="loginData.invalid">Log in</button>
+                </form>
+                {{ info | json}}
+                Form status : {{ loginData.status }}
+              </div>
+
+                <h5>html file</h5>
+                <div class="p-3">
+                    <pre>
+&lt;form [formGroup]="loginData" (ngSubmit)="login(loginData.value)">
+
+&lt;p>   Email :       &lt;span class="text-danger" *ngIf="loginData.controls.email.touched && loginData.controls.email.invalid"> 
+                    Please enter email      &lt;/span> &lt;/p>
+
+&lt;input type="email" [ngClass]="&#123;'border-red' : loginData.controls.email.touched && loginData.controls.email.invalid }" 
+class="form-control mb-1" formControlName="email">
+        
+&lt;p>  Password :   &lt;span class="text-danger" *ngIf="loginData.controls.password.touched && loginData.controls.password.invalid">
+                  Please enter password     &lt;/span> &lt;/p>
+
+&lt; input type="pasaword" [ngClass]="&#123;'border-red' : loginData.controls.password.touched && loginData.controls.password.invalid }" 
+class="form-control mb-3" formControlName="password">
+        
+&lt; button class="btn btn-success" [disabled]="loginData.invalid">     Log in      &lt;/button>
+                        
+&lt;/form>
+                    </pre>
+                </div>
+            </div>
+
+
+
+        </div>
+        <!-- ---------- -->
+
+        <div class="col-lg-12">
+            <h5>ts file</h5>
+            <p>new FormControl(value,validator) <br>
+                Validators.compose is used to add more than one validator i.e. it is array of validators</p>
+                <p>email : new FormControl("",Validators.compose([Validators.required, Validators.email]))</p>
+
+            <pre>
+                ngOnInit(): void 
+&#123;
+    this.loginData = new FormGroup(
+      &#123;
+// email : new FormControl("",Validators.compose([Validators.required, Validators.email])), // required validator
+
+email : new FormControl("",Validators.compose([Validators.required,Validators.email, Validators.pattern("[a-zA-Z0-9.-_]&#123;1,}@[a-zA-Z.-]&#123;2,}
+                                                                        [.]&#123;1}[a-zA-Z]&#123;3,}")])),  // using pattern
+
+password : new FormControl ("",Validators.compose([Validators.required])) 
+       
+      })
+}
+            </pre>
+        </div>
+    </div>
+
+
+    
+</div>

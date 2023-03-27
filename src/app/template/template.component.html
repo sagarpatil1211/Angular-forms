@@ -1,0 +1,34 @@
+<div class="container mt-3">
+    <div class="row">
+        <div class="col-lg-6">
+
+            <!-- -------Template driven form--------- -->
+
+
+            <h2>1. Template driven form</h2>
+            <p class="h6">Mostly work done in the component template. i.e form valilate in html page </p>
+            <p>Template driven forms is created using directives in the template. It is mainly used for creating a
+                simple form
+                application.</p>
+            <p>To enable template driven forms, first we need to import <b>FormsModule</b> in <b>app.module.ts</b>.</p>
+            <pre>
+          &lt;form #userName="ngForm" (ngSubmit)="onClickSubmit(userName.value)">
+          &lt;input type="text" name="username"  ngModel>
+          &lt;input type="submit" value="submit">
+          &lt;/form>       </pre>
+
+            <p>Here, we used <b>ngModel</b> attribute in <b>input</b> text field.</p>
+
+            <form #login="ngForm" (ngSubmit)="save(login.value)">
+                <p>Username</p>
+                <input type="text" class="form-control" name="username" ngModel>
+                <p>Password</p>
+                <input type="password" class="form-control" name="password" ngModel>
+
+                <button class="btn btn-primary mt-2 " type="submit">Log in</button>
+            </form>
+            {{info | json}}
+
+        </div>
+    </div>
+</div>

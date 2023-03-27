@@ -1,0 +1,77 @@
+<div class="container mt-3">
+    <div class="row">
+  
+        <!-- -------reactive or model driven form--------- -->
+    
+        <div class="col-lg-6">
+          <h2>2. Reactive form (model driven form)</h2>
+          <p class="h6">Mostly work done in the component class. i.e form valilate in ts file </p>
+          <p>Reactive Forms is created inside component class so it is also referred as model driven forms.</p>
+          <p>Every form control will have an object in the component and this provides greater control and flexibility in the form programming. Reactive Form is based on structured data model.</p>
+          <p>To enable reactive forms, first we need to import <b>ReactiveFormsModule</b> in <b>app.module.ts</b></p>
+          <ul>
+            <li><b>FormControl</b> - Define basic functionality of individual form control</li>
+            <li><b>FormGroup</b> - Used to aggregate the values of collection form control</li>
+            <li> <b>FormArray</b> - Used to aggregate the values of form control into an array</li>
+            <li><b>ControlValueAccessor</b> - Acts as an interface between Forms API to HTML DOM
+              elements.</li>
+          </ul>
+          <p>We need to import <b>FormGroup</b>, <b>FormControl</b> classes in TestComponent.</p>
+          <pre>import  FormGroup, FormControl } from '@angular/forms';</pre>
+        
+          <div class="border p-3">
+            <form [formGroup]="formdata" (ngSubmit)="save(formdata.value)">
+              <p>Username:</p>
+              <input type="text" class="form-control" formControlName = "username">
+              <p>Password:</p>
+              <input type="password" class="form-control mb-2" formControlName = "password">
+      
+              <button type="submit" class="btn btn-primary">Log in</button>
+            </form>
+          </div>
+          {{ object | json }}
+        </div>
+
+        <div class="col-lg-6">
+          <p><b>html file</b></p>
+          <pre>
+&lt;form [formGroup]="formdata" (ngSubmit)="onSubmit(formdata.value)">
+&lt;input type= text" name="userName" placeholder="userName"
+      formControlName = "userName">
+&lt;input type="submit" value="Click here">
+ &lt;/form>  
+          </pre>
+
+          <ul>
+            <li>New form is created and set it’s <b>formGroup</b> property to formdata.</li>
+            <li>New input text field is created and set is <b>formControlName</b> to username.</li>
+            <li><b>ngSubmit</b> event property is used in the form and set <b>onClickSubmit()</b> method
+              as its value.</li>
+            <li><b>onClickSubmit()</b> method gets formdata values as its arguments</li>
+          </ul>
+       
+    
+          <p><b>ts file</b></p>
+          <pre>
+            ngOnInit() 	&#123;
+              this.formdata = new FormGroup(&#123;
+              userName: new FormControl("set name")
+              });
+             }
+
+             onSubmit(data) &#123;
+             this.datas = data}
+            }
+          </pre>
+          <ul>
+            <li>Created an instance of <b>formGroup</b> and set it to local variable, formdata</li>
+            <li>Crete an instance of <b>FormControl</b> and set it one of the entry in formdata.
+            </li>
+            <li>Created a <b>onClickSubmit()</b> method, which sets the local variable, <b>userName</b> with
+              its argument.</li>
+          </ul>
+        </div>
+
+        <hr class="mt-2">
+      </div>
+</div>
